@@ -8,12 +8,21 @@ function Book(name, author, type) {
 }
 
 // Display Constructor
+ 
+function Display() {
 
-// function display() {
-
-// }
+}
 
 // Add methods to display prototype
+Display.prototype.add = function(book){
+    console.log('Adding');
+}
+Display.prototype.clear = function(){
+    let libraryForm = document.getElementById('libraryForm');
+    libraryForm.reset();
+}
+
+
 
 // Add submit event listener to libraryForm
 
@@ -42,7 +51,14 @@ function libraryFormSub(e) {
     };
 
     let book = new Book(name, author, type);
+    console.log(book);
 
+    let display = new Display();
+    display.add(book);
+    display.clear();
+    
    e.preventDefault();
-   console.log(book);
+ 
 } 
+
+
