@@ -46,7 +46,7 @@ Display.prototype.show = function (type, displayMessage) {
                         </div>`;
      setTimeout(function() {
          message.innerHTML = ""
-      }, 2000);
+      }, 5000);
                                     }
 
 // Add submit event listener to libraryForm
@@ -65,7 +65,6 @@ function libraryFormSub(e) {
     let fiction = document.getElementById('fiction');
     let programming = document.getElementById('programming');
     let cooking = document.getElementById('cooking');
-
 
     if (fiction.checked) {
         type = fiction.value;
@@ -92,8 +91,18 @@ function libraryFormSub(e) {
         display.show('danger', 'Sorry you can not add this book');
     }
 
+    let bookDetails ={
+        name: name,
+        author: author,
+        type: type
+    }
+    
+    window.localStorage.setItem('Book', JSON.stringify(bookDetails));
 
 
 }
+
+
+
 
 
