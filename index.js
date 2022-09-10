@@ -44,10 +44,10 @@ Display.prototype.show = function (type, displayMessage) {
                             <strong>Message: </strong> ${displayMessage}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>`;
-     setTimeout(function() {
-         message.innerHTML = ""
-      }, 5000);
-                                    }
+    setTimeout(function () {
+        message.innerHTML = ""
+    }, 5000);
+}
 
 // Add submit event listener to libraryForm
 
@@ -65,7 +65,7 @@ function libraryFormSub(e) {
     let fiction = document.getElementById('fiction');
     let programming = document.getElementById('programming');
     let cooking = document.getElementById('cooking');
-
+l
     if (fiction.checked) {
         type = fiction.value;
     }
@@ -91,17 +91,47 @@ function libraryFormSub(e) {
         display.show('danger', 'Sorry you can not add this book');
     }
 
-    let bookDetails ={
+    let bookDetails = {
         name: name,
         author: author,
         type: type
     }
-    
-    window.localStorage.setItem('Book', JSON.stringify(bookDetails));
 
 
-}
+    if (localStorage.getItem('Book') == null) {
+        localStorage.setItem('Book', '[]');
+    }
 
+    let old_bookList = JSON.parse(localStorage.getItem('Book'));
+    old_bookList.push(bookDetails);
+
+    localStorage.setItem('Book', JSON.stringify(old_bookList));
+
+    }
+
+    let savedBooks = window.localStorage.getItem('Book');
+
+    if(savedBooks){
+    JSON.parse(savedBooks).forEach(savedBook => {
+        
+        if (savedBook){
+
+                   
+        let book = new Book(savedBook.name, savedBook.author, savedBook.type);
+                
+            let display = new Display();
+        
+            if (display.validate(book)) {
+        
+                display.add(book);
+                display.clear();
+                display.show('success', 'your book has been sucessfully added')
+            }
+        }
+        
+
+    });
+    }
 
 
 
