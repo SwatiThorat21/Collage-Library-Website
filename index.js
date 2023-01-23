@@ -1,4 +1,3 @@
-console.log('this is index.js');
 
 // Contructor
 function Book(name, author, type) {
@@ -64,16 +63,16 @@ function libraryFormSub(e) {
 
     let fiction = document.getElementById('fiction');
     let programming = document.getElementById('programming');
-    let cooking = document.getElementById('cooking');
-l
+    let cookery = document.getElementById('cookery');
+
     if (fiction.checked) {
         type = fiction.value;
     }
     else if (programming.checked) {
         type = programming.value;
     }
-    else if (cooking.checked) {
-        type = cooking.value;
+    else if (cookery.checked) {
+        type = cookery.value;
     };
 
     let book = new Book(name, author, type);
